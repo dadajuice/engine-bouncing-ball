@@ -1,20 +1,16 @@
 package cegepst.engine;
 
+import cegepst.Ball;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.Random;
 
 public class GameWindow extends JFrame {
 
     private static final int SLEEP = 25;
-    private Random rnd = new Random();
+    private Ball ball;
     private boolean playing = true;
-    private int radius = getRandomNumber(20, 50);
-    private int x = getRandomNumber(0 + radius * 2, 800 - radius * 2);
-    private int y = getRandomNumber(0 + radius * 2, 600 - radius * 2);
-    private int dx = getRandomNumber(0, 1) == 0 ? 5 : -5;
-    private int dy = getRandomNumber(0, 1) == 0 ? 5 : -5;
     private JPanel panel;
     private BufferedImage bufferedImage;
     private Graphics2D buffer;
@@ -37,6 +33,8 @@ public class GameWindow extends JFrame {
         panel.setFocusable(true);
         panel.setDoubleBuffered(true);
         add(panel); // Ajouter le panneau dans le JFrame
+
+        ball = new Ball();
     }
 
     public void start() {
@@ -70,21 +68,16 @@ public class GameWindow extends JFrame {
     }
 
     public void update() {
-        x += dx;
-        y += dy;
-        if (y <= radius || y >= 600 - radius) {
-            dy *= -1;
-            score += 10;
-        }
-        if (x <= radius || x >= 800 - radius) {
-            dx *= -1;
+        ball.update();
+        if (ball.hasTouchBound()) {
             score += 10;
         }
     }
 
     public void drawOnBuffer() {
         buffer.setPaint(Color.RED);
-        buffer.fillOval(x, y, radius * 2, radius * 2);
+        buffer.fillOval(ball.getX(), ball.getY(),
+                ball.getRadius() * 2, ball.getRadius() * 2);
 
         buffer.setPaint(Color.WHITE);
         buffer.drawString("Score: " + score, 10, 20);
@@ -95,9 +88,5 @@ public class GameWindow extends JFrame {
         graphics.drawImage(bufferedImage, 0, 0, panel);
         Toolkit.getDefaultToolkit().sync();
         graphics.dispose();
-    }
-
-    private int getRandomNumber(int min, int max) {
-        return rnd.nextInt((max - min) + 1) + min;
     }
 }
