@@ -75,9 +75,7 @@ public class GameWindow extends JFrame {
     }
 
     public void drawOnBuffer() {
-        buffer.setPaint(Color.RED);
-        buffer.fillOval(ball.getX(), ball.getY(),
-                ball.getRadius() * 2, ball.getRadius() * 2);
+        ball.draw(buffer);
 
         buffer.setPaint(Color.WHITE);
         buffer.drawString("Score: " + score, 10, 20);
