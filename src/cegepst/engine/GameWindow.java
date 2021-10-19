@@ -6,11 +6,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class GameWindow extends JFrame {
+public class GameWindow {
 
     private static final int SLEEP = 25;
     private Ball ball;
     private boolean playing = true;
+    private JFrame frame;
     private JPanel panel;
     private BufferedImage bufferedImage;
     private Graphics2D buffer;
@@ -18,12 +19,13 @@ public class GameWindow extends JFrame {
     private int score = 0;
 
     public GameWindow() {
-        setSize(800, 600);
-        setLocationRelativeTo(null); // Center frame on screen
-        setResizable(false);
-        setTitle("Bouncing Balls");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setState(JFrame.NORMAL);
+        frame = new JFrame();
+        frame.setSize(800, 600);
+        frame.setLocationRelativeTo(null); // Center frame on screen
+        frame.setResizable(false);
+        frame.setTitle("Bouncing Balls");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setState(JFrame.NORMAL);
 
         // Supprimer la barre de l'application
         //setUndecorated(true);
@@ -32,13 +34,13 @@ public class GameWindow extends JFrame {
         panel.setBackground(Color.BLUE);
         panel.setFocusable(true);
         panel.setDoubleBuffered(true);
-        add(panel); // Ajouter le panneau dans le JFrame
+        frame.add(panel); // Ajouter le panneau dans le JFrame
 
         ball = new Ball(20);
     }
 
     public void start() {
-        setVisible(true);
+        frame.setVisible(true);
         before = System.currentTimeMillis();
         while (playing) {
             bufferedImage = new BufferedImage(800, 600,
