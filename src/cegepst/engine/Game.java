@@ -19,23 +19,8 @@ public class Game {
     private int score = 0;
 
     public Game() {
-        frame = new JFrame();
-        frame.setSize(800, 600);
-        frame.setLocationRelativeTo(null); // Center frame on screen
-        frame.setResizable(false);
-        frame.setTitle("Bouncing Balls");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setState(JFrame.NORMAL);
-
-        // Supprimer la barre de l'application
-        //setUndecorated(true);
-
-        panel = new JPanel();
-        panel.setBackground(Color.BLUE);
-        panel.setFocusable(true);
-        panel.setDoubleBuffered(true);
-        frame.add(panel); // Ajouter le panneau dans le JFrame
-
+        initializeFrame();
+        initializePanel();
         ball = new Ball(20);
     }
 
@@ -88,5 +73,26 @@ public class Game {
         graphics.drawImage(bufferedImage, 0, 0, panel);
         Toolkit.getDefaultToolkit().sync();
         graphics.dispose();
+    }
+
+    private void initializeFrame() {
+        frame = new JFrame();
+        frame.setSize(800, 600);
+        frame.setLocationRelativeTo(null); // Center frame on screen
+        frame.setResizable(false);
+        frame.setTitle("Bouncing Balls");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setState(JFrame.NORMAL);
+
+        // Supprimer la barre de l'application
+        //setUndecorated(true);
+    }
+
+    private void initializePanel() {
+        panel = new JPanel();
+        panel.setBackground(Color.BLUE);
+        panel.setFocusable(true);
+        panel.setDoubleBuffered(true);
+        frame.add(panel); // Ajouter le panneau dans le JFrame
     }
 }
