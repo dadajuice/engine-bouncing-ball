@@ -34,7 +34,7 @@ public class GameWindow extends JFrame {
         panel.setDoubleBuffered(true);
         add(panel); // Ajouter le panneau dans le JFrame
 
-        ball = new Ball();
+        ball = new Ball(20);
     }
 
     public void start() {

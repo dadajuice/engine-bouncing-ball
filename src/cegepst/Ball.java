@@ -4,21 +4,30 @@ import java.util.Random;
 
 public class Ball {
 
-    private Random rnd = new Random();
-    private int radius = getRandomNumber(20, 50);
-    private int x = getRandomNumber(0 + radius * 2, 800 - radius * 2);
-    private int y = getRandomNumber(0 + radius * 2, 600 - radius * 2);
-    private int dx = getRandomNumber(0, 1) == 0 ? 5 : -5;
-    private int dy = getRandomNumber(0, 1) == 0 ? 5 : -5;
+    private final Random random;
+    private int radius;
+    private int x;
+    private int y;
+    private int velocityX;
+    private int velocityY;
+
+    public Ball(int radius) {
+        random = new Random();
+        this.radius = radius;
+        x = getRandomNumber(0 + radius * 2, 800 - radius * 2);
+        y = getRandomNumber(0 + radius * 2, 600 - radius * 2);
+        velocityX = getRandomNumber(0, 1) == 0 ? 5 : -5;
+        velocityY = getRandomNumber(0, 1) == 0 ? 5 : -5;
+    }
 
     public void update() {
-        x += dx;
-        y += dy;
+        x += velocityX;
+        y += velocityY;
         if (hasTouchVerticalBound()) {
-            dy *= -1;
+            velocityY *= -1;
         }
         if (hasTouchHorizontalBound()) {
-            dx *= -1;
+            velocityX *= -1;
         }
     }
 
@@ -38,43 +47,15 @@ public class Ball {
         return radius;
     }
 
-    public void setRadius(int radius) {
-        this.radius = radius;
-    }
-
     public int getX() {
         return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
     }
 
     public int getY() {
         return y;
     }
 
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int getDx() {
-        return dx;
-    }
-
-    public void setDx(int dx) {
-        this.dx = dx;
-    }
-
-    public int getDy() {
-        return dy;
-    }
-
-    public void setDy(int dy) {
-        this.dy = dy;
-    }
-
     private int getRandomNumber(int min, int max) {
-        return rnd.nextInt((max - min) + 1) + min;
+        return random.nextInt((max - min) + 1) + min;
     }
 }
