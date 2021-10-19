@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class GameWindow {
+public class Game {
 
     private static final int SLEEP = 25;
     private Ball ball;
@@ -18,7 +18,7 @@ public class GameWindow {
     private long before;
     private int score = 0;
 
-    public GameWindow() {
+    public Game() {
         frame = new JFrame();
         frame.setSize(800, 600);
         frame.setLocationRelativeTo(null); // Center frame on screen
