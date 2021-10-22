@@ -1,6 +1,4 @@
-package cegepst;
-
-import cegepst.engine.Game;
+package cegepst.bouncingBalls;
 
 public class App {
 
