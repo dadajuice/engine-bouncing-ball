@@ -5,16 +5,19 @@ import cegepst.engine.Game;
 
 public class MovingRectangleGame extends Game {
 
+    private InputHandler inputHandler;
     private Player player;
 
     @Override
     public void initialize() {
+        inputHandler = new InputHandler();
+        addKeyListener(inputHandler);
         player = new Player(100, 100);
     }
 
     @Override
     public void update() {
-        player.update();
+        player.update(inputHandler);
     }
 
     @Override

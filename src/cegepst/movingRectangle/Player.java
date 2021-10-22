@@ -18,8 +18,16 @@ public class Player {
         height = 60;
     }
 
-    public void update() {
-
+    public void update(InputHandler inputHandler) {
+        if (inputHandler.isDownPressed()) {
+            y += 4;
+        } else if (inputHandler.isUpPressed()) {
+            y -= 4;
+        } else if (inputHandler.isLeftPressed()) {
+            x -= 4;
+        } else if (inputHandler.isRightPressed()) {
+            x += 4;
+        }
     }
 
     public void draw(Buffer buffer) {
