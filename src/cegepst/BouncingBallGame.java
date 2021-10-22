@@ -1,5 +1,6 @@
 package cegepst;
 
+import cegepst.engine.Buffer;
 import cegepst.engine.Game;
 
 import java.awt.*;
@@ -23,10 +24,9 @@ public class BouncingBallGame extends Game {
     }
 
     @Override
-    public void draw(Graphics2D buffer) {
+    public void draw(Buffer buffer) {
         ball.draw(buffer);
-        buffer.setPaint(Color.WHITE);
-        buffer.drawString("Score: " + score, 10, 20);
+        buffer.drawText("Score: " + score, 10, 20, Color.WHITE);
     }
 
     @Override
