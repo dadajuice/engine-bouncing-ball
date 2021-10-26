@@ -1,6 +1,5 @@
 package cegepst.engine;
 
-import java.awt.*;
 import java.awt.event.KeyListener;
 
 public abstract class Game {
