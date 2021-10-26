@@ -65,7 +65,7 @@ public class GameTime {
     private void update() {
         fpsCount++;
         long currentSecond = TimeUnit.MILLISECONDS.toSeconds(getElapsedTime());
-        if (fpsTimeDelta != currentSecond) {
+        if (fpsTimeDelta != currentSecond) { // Vérifie si nouvelle seconde
             currentFps = fpsCount;
             fpsCount = 0;
         }
