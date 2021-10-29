@@ -2,7 +2,7 @@ package cegepst.engine.entities;
 
 import cegepst.engine.Buffer;
 
-public abstract class Entity {
+public abstract class StaticEntity {
 
     protected int x;
     protected int y;

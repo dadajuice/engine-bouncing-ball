@@ -15,6 +15,7 @@ public class Player extends ControllableEntity {
         setSpeed(4);
     }
 
+    @Override
     public void update() {
         moveAccordingToController();
     }
