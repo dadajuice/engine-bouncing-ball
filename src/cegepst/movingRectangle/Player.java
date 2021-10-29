@@ -1,29 +1,22 @@
 package cegepst.movingRectangle;
 
 import cegepst.engine.Buffer;
+import cegepst.engine.controls.MovementController;
 import cegepst.engine.entities.ControllableEntity;
 
 import java.awt.*;
 
 public class Player extends ControllableEntity {
 
-    public Player(int x, int y) {
-        teleport(x, y);
+    public Player(MovementController controller) {
+        super(controller);
+        teleport(100, 100);
         setDimension(30, 60);
         setSpeed(4);
     }
 
-    @Override
-    public void update(InputHandler inputHandler) {
-        if (inputHandler.isDownPressed()) {
-            moveDown();
-        } else if (inputHandler.isUpPressed()) {
-            moveUp();
-        } else if (inputHandler.isLeftPressed()) {
-            moveLeft();
-        } else if (inputHandler.isRightPressed()) {
-            moveRight();
-        }
+    public void update() {
+        moveAccordingToController();
     }
 
     @Override

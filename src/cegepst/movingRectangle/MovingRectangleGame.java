@@ -2,22 +2,23 @@ package cegepst.movingRectangle;
 
 import cegepst.engine.Buffer;
 import cegepst.engine.Game;
+import cegepst.engine.controls.MovementController;
 
 public class MovingRectangleGame extends Game {
 
-    private InputHandler inputHandler;
+    private MovementController inputHandler;
     private Player player;
 
     @Override
     public void initialize() {
-        inputHandler = new InputHandler();
+        inputHandler = new MovementController();
         addKeyListener(inputHandler);
-        player = new Player(100, 100);
+        player = new Player(inputHandler);
     }
 
     @Override
     public void update() {
-        player.update(inputHandler);
+        player.update();
     }
 
     @Override
