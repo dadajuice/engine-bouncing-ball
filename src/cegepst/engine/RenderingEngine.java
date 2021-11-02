@@ -7,13 +7,16 @@ import java.awt.image.BufferedImage;
 
 public class RenderingEngine {
 
+    private static RenderingEngine instance;
     private JFrame frame;
     private JPanel panel;
     private BufferedImage bufferedImage;
 
-    public RenderingEngine() {
-        initializeFrame();
-        initializePanel();
+    public static RenderingEngine getInstance() {
+        if (instance == null) {
+            instance = new RenderingEngine();
+        }
+        return instance;
     }
 
     public Buffer getRenderingBuffer() {
@@ -44,12 +47,17 @@ public class RenderingEngine {
         panel.addKeyListener(listener);
     }
 
+    private RenderingEngine() {
+        initializeFrame();
+        initializePanel();
+    }
+
     private void initializeFrame() {
         frame = new JFrame();
         frame.setSize(800, 600);
         frame.setLocationRelativeTo(null); // Center frame on screen
         frame.setResizable(false);
-        frame.setTitle("Bouncing Balls");
+        frame.setTitle("--- GAME ---");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setState(JFrame.NORMAL);
         frame.setUndecorated(true);
