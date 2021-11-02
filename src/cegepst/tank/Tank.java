@@ -28,6 +28,7 @@ public class Tank extends ControllableEntity {
 
     @Override
     public void update() {
+        super.update(); // Meh
         moveAccordingToController();
         cooldown--;
         if (cooldown <= 0) {
@@ -38,5 +39,8 @@ public class Tank extends ControllableEntity {
     @Override
     public void draw(Buffer buffer) {
         buffer.drawRectangle(x, y, width, height, Color.GREEN);
+        if (hasMoved()) {
+            drawHitBox(buffer);
+        }
     }
 }
