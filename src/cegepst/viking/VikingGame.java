@@ -28,6 +28,11 @@ public class VikingGame extends Game {
             stop();
         }
         player.update();
+        if (player.getY() < tree.getY() + 52) {
+            tree.blockadeFromTop();
+        } else {
+            tree.blockadeFromBottom();
+        }
     }
 
     @Override

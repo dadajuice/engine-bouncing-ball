@@ -17,8 +17,16 @@ public class Tree extends StaticEntity {
         teleport(x, y);
         blockade = new Blockade();
         blockade.setDimension(30, 16);
-        blockade.teleport(x + 16, y + 64);
+        blockadeFromTop();
         load();
+    }
+
+    public void blockadeFromTop() {
+        blockade.teleport(x + 16, y + 64);
+    }
+
+    public void blockadeFromBottom() {
+        blockade.teleport(x + 16, y + 48);
     }
 
     @Override
