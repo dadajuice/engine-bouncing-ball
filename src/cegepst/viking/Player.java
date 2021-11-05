@@ -1,6 +1,7 @@
 package cegepst.viking;
 
 import cegepst.engine.Buffer;
+import cegepst.engine.controls.Direction;
 import cegepst.engine.controls.MovementController;
 import cegepst.engine.entities.ControllableEntity;
 
@@ -12,11 +13,15 @@ import java.io.IOException;
 public class Player extends ControllableEntity {
 
     private static final String SPRITE_SHEET_PATH = "images/player.png";
+    private static final int ANIMATION_SPEED = 8;
+
     private BufferedImage spriteSheet;
     private Image[] rightFrames;
     private Image[] leftFrames;
     private Image[] upFrames;
     private Image[] downFrames;
+    private int currentAnimationFrame = 1; // idle frame (middle)
+    private int nextFrame = ANIMATION_SPEED;
 
     public Player(MovementController controller) {
         super(controller);
@@ -30,11 +35,31 @@ public class Player extends ControllableEntity {
     public void update() {
         super.update();
         moveAccordingToController();
+        if (hasMoved()) {
+            --nextFrame;
+            if (nextFrame == 0) {
+                ++currentAnimationFrame;
+                if (currentAnimationFrame >= leftFrames.length) {
+                    currentAnimationFrame = 0;
+                }
+                nextFrame = ANIMATION_SPEED;
+            }
+        } else {
+            currentAnimationFrame = 1; // Back to idle frame
+        }
     }
 
     @Override
     public void draw(Buffer buffer) {
-        buffer.drawImage(leftFrames[1], x, y);
+        if (getDirection() == Direction.RIGHT) {
+            buffer.drawImage(rightFrames[currentAnimationFrame], x, y);
+        } else if (getDirection() == Direction.LEFT) {
+            buffer.drawImage(leftFrames[currentAnimationFrame], x, y);
+        } else if (getDirection() == Direction.UP) {
+            buffer.drawImage(upFrames[currentAnimationFrame], x, y);
+        } else {
+            buffer.drawImage(downFrames[currentAnimationFrame], x, y);
+        }
     }
 
     private void loadSpriteSheet() {
