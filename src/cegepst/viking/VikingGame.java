@@ -8,14 +8,19 @@ public class VikingGame extends Game {
     private World world;
     private GamePad gamePad;
     private Player player;
+    private Tree tree;
 
     @Override
     public void initialize() {
         gamePad = new GamePad();
         world = new World();
         world.load();
+
+        tree = new Tree();
+        tree.teleport(300, 350);
+
         player = new Player(gamePad);
-        player.teleport(100, 300);
+        player.teleport(200, 200);
     }
 
     @Override
@@ -29,7 +34,13 @@ public class VikingGame extends Game {
     @Override
     public void draw(Buffer buffer) {
         world.draw(buffer);
-        player.draw(buffer);
+        if (player.getY() < tree.getY() + 52) { // 80 - 28 (max pour behind)
+            player.draw(buffer);
+            tree.draw(buffer);
+        } else {
+            tree.draw(buffer);
+            player.draw(buffer);
+        }
     }
 
     @Override
