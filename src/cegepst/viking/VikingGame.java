@@ -2,6 +2,7 @@ package cegepst.viking;
 
 import cegepst.engine.Buffer;
 import cegepst.engine.Game;
+import cegepst.engine.RenderingEngine;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -38,6 +39,8 @@ public class VikingGame extends Game {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        RenderingEngine.getInstance().getScreen().hideCursor();
     }
 
     @Override

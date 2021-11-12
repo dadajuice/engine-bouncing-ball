@@ -19,6 +19,14 @@ public class Screen {
         initializeDevice();
     }
 
+    public void hideCursor() {
+        frame.setCursor(invisibleCursor);
+    }
+
+    public void showCursor() {
+        frame.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }
+
     protected void setPanel(JPanel panel) {
         frame.add(panel);
     }

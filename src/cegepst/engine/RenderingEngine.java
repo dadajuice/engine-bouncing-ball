@@ -35,6 +35,10 @@ public class RenderingEngine {
         graphics.dispose();
     }
 
+    public Screen getScreen() {
+        return screen;
+    }
+
     public void start() {
         screen.start();
     }
