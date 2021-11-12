@@ -41,6 +41,7 @@ public class VikingGame extends Game {
         }
 
         RenderingEngine.getInstance().getScreen().hideCursor();
+        RenderingEngine.getInstance().getScreen().fullscreen();
     }
 
     @Override
